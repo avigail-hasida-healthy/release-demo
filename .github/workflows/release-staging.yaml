@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Validate version format
         run: |
-          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.0$ ]]; then
+          if [[ ! "${{ env.VERSION }}" =~ ^[0-9]+\.[0-9]+\.0$ ]]; then
             echo "Invalid version format. Please use the 1.0.0 format. Exiting the workflow with an error."
             exit 1
           fi
@@ -29,26 +29,26 @@ jobs:
 
       - name: Check if tag exists
         run: |
-          TAG_EXISTS=$(git show-ref --tags | grep "refs/tags/$TAG_NAME")
+          TAG_EXISTS=$(git show-ref --tags | grep "refs/tags/${{ env.TAG_NAME }}")
           if [ -n "$TAG_EXISTS" ]; then
-            echo "Tag v$TAG_NAME already exists. Exiting the workflow."
+            echo "Tag ${TAG_NAME} already exists. Exiting the workflow."
             exit 1
           fi
 
       - name: Check if branch exists
         run: |
-          BRANCH_EXISTS=$(git show-ref --verify --quiet "refs/heads/$BRANCH_NAME")
+          BRANCH_EXISTS=$(git show-ref --verify --quiet "refs/heads/${{ env.BRANCH_NAME }}")
           if [ -n "$BRANCH_EXISTS" ]; then
-            echo "Branch $BRANCH_NAME already exists. Exiting the workflow with an error."
+            echo "Branch ${BRANCH_NAME} already exists. Exiting the workflow with an error."
             exit 1
           fi
 
       - name: Create release branch
         run: |
-          git checkout -b $BRANCH_NAME
-          git push origin $BRANCH_NAME
+          git checkout -b ${{ env.BRANCH_NAME }}
+          git push origin ${{ env.BRANCH_NAME }}
 
       - name: Tag the commit with initial version
         run: |
-          git tag -f staging $TAG_NAME
+          git tag -f staging ${{ env.TAG_NAME }}
           git push origin --tags -f
