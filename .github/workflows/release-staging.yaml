@@ -13,7 +13,7 @@ jobs:
 
     env:
       VERSION: ${{ github.event.inputs.version }}
-      TAG_NAME: v$VERSION
+      TAG_NAME: v${{ github.event.inputs.version }}
       BRANCH_NAME: release/${VERSION%.0}.x
 
     steps:
