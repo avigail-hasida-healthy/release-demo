@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Name of the release branch (e.g., 1.0.0)"
+        description: "The release version (e.g., 1.0.0)"
         required: true
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
           fi
 
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Check if tag exists
         run: |
