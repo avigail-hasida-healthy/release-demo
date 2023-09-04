@@ -14,7 +14,6 @@ jobs:
     env:
       VERSION: ${{ github.event.inputs.version }}
       TAG_NAME: v${{ github.event.inputs.version }}
-      BRANCH_NAME: "release/${${{ github.event.inputs.version }}%.0}.x"
 
     steps:
       - name: Validate version format
@@ -37,7 +36,8 @@ jobs:
 
       - name: Check if branch exists
         run: |
-          BRANCH_EXISTS=$(git show-ref --verify --quiet "refs/heads/${{ env.BRANCH_NAME }}")
+          BRANCH_NAME="release/${VERSION%.0}.x"
+          BRANCH_EXISTS=$(git show-ref --verify --quiet "refs/heads/$BRANCH_NAME")
           if [ -n "$BRANCH_EXISTS" ]; then
             echo "Branch ${BRANCH_NAME} already exists. Exiting the workflow with an error."
             exit 1
@@ -45,8 +45,9 @@ jobs:
 
       - name: Create release branch
         run: |
-          git checkout -b ${{ env.BRANCH_NAME }}
-          git push origin ${{ env.BRANCH_NAME }}
+          BRANCH_NAME="release/${VERSION%.0}.x"
+          git checkout -b $BRANCH_NAME
+          git push origin $BRANCH_NAME
 
       - name: Tag the commit with initial version
         run: |
