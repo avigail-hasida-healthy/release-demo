@@ -1,0 +1,54 @@
+name: Create Release Branch and Tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Name of the release branch (e.g., 1.0.0)"
+        required: true
+
+jobs:
+  check-tag-and-create-branch:
+    runs-on: ubuntu-latest
+
+    env:
+      VERSION: ${{ github.event.inputs.version }}
+      TAG_NAME: v$VERSION
+      BRANCH_NAME: release/${VERSION%.0}.x
+
+    steps:
+      - name: Validate version format
+        run: |
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.0$ ]]; then
+            echo "Invalid version format. Please use the 1.0.0 format. Exiting the workflow with an error."
+            exit 1
+          fi
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Check if tag exists
+        run: |
+          TAG_EXISTS=$(git show-ref --tags | grep "refs/tags/$TAG_NAME")
+          if [ -n "$TAG_EXISTS" ]; then
+            echo "Tag v$TAG_NAME already exists. Exiting the workflow."
+            exit 1
+          fi
+
+      - name: Check if branch exists
+        run: |
+          BRANCH_EXISTS=$(git show-ref --verify --quiet "refs/heads/$BRANCH_NAME")
+          if [ -n "$BRANCH_EXISTS" ]; then
+            echo "Branch $BRANCH_NAME already exists. Exiting the workflow with an error."
+            exit 1
+          fi
+
+      - name: Create release branch
+        run: |
+          git checkout -b $BRANCH_NAME
+          git push origin $BRANCH_NAME
+
+      - name: Tag the commit with initial version
+        run: |
+          git tag -f staging $TAG_NAME
+          git push origin --tags -f
