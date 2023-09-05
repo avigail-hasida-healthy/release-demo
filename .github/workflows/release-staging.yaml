@@ -48,14 +48,9 @@ jobs:
 
       - name: Check if tag exists
         run: |
-          pwd 
-          echo "Checking if tag ${TAG_NAME} exists."
-          echo "github.actor: ${{github.actor}}"
-          echo "github.actor_id: ${{github.actor_id}}"
-          TAG_EXISTS=$(git tag | grep "testing")
-          echo "Tag exists: $TAG_EXISTS"
-          if [ -n "$TAG_EXISTS" ]; then
-            echo "Tag ${TAG_NAME} already exists. Exiting the workflow."
+          if ! TAG_EXISTS=$(git show-ref --tags 2>&1 | grep "refs/tags/$TAG_NAME"); then
+            echo "Tag check failed: $TAG_EXISTS"
+            echo "::error::$TAG_EXISTS"
             exit 1
           fi
 
