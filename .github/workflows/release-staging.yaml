@@ -46,6 +46,9 @@ jobs:
         run: |
           pwd 
           echo "Checking if tag ${TAG_NAME} exists."
+          git tag > tags.txt
+          cat tags.txt
+          echo "Checking tags.txt"
           TAG_EXISTS=$(git tag | grep "testing")
           echo "Tag exists: $TAG_EXISTS"
           if [ -n "$TAG_EXISTS" ]; then
