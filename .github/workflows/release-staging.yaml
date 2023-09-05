@@ -18,10 +18,11 @@ jobs:
     permissions:
       actions: read
       checks: read
-      contents: read
+      contents: write
       deployments: read
       discussions: read
       issues: read
+      metadata: write
       packages: read
       pages: read
       pull-requests: read
@@ -44,7 +45,7 @@ jobs:
       - name: Check if tag exists
         run: |
           echo "Checking if tag ${TAG_NAME} exists."
-          TAG_EXISTS=$(git tag -l | grep "${{ env.TAG_NAME }}")
+          TAG_EXISTS=$(git tag -l)
           echo "Tag exists: $TAG_EXISTS"
           if [ -n "$TAG_EXISTS" ]; then
             echo "Tag ${TAG_NAME} already exists. Exiting the workflow."
