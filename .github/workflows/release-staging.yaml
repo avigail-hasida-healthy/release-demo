@@ -22,7 +22,6 @@ jobs:
       deployments: read
       discussions: read
       issues: read
-      metadata: write
       packages: read
       pages: read
       pull-requests: read
