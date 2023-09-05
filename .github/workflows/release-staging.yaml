@@ -42,9 +42,22 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
+      # - name: Check if tag exists - script
+      #   run: ./.github/workflows/check-tag-exists.sh
+      #   shell: bash
+
       - name: Check if tag exists
-        run: ./.github/scripts/check-tag-exists.sh
-        shell: bash
+        run: |
+          pwd 
+          echo "Checking if tag ${TAG_NAME} exists."
+          echo "github.actor: ${{github.actor}}"
+          echo "github.actor_id: ${{github.actor_id}}"
+          TAG_EXISTS=$(git tag | grep "testing")
+          echo "Tag exists: $TAG_EXISTS"
+          if [ -n "$TAG_EXISTS" ]; then
+            echo "Tag ${TAG_NAME} already exists. Exiting the workflow."
+            exit 1
+          fi
 
       - name: Check if branch exists
         run: |
