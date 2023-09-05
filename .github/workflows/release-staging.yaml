@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       VERSION: ${{ github.event.inputs.version }}
       TAG_NAME: v${{ github.event.inputs.version }}
 
