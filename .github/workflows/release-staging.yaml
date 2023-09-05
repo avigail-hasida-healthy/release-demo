@@ -48,6 +48,8 @@ jobs:
 
       - name: Check if tag exists
         run: |
+          echo $(git config --global user.name)
+          echo $(git config --global user.email)
           if ! TAG_EXISTS=$(git show-ref --tags 2>&1 | grep "refs/tags/$TAG_NAME"); then
             echo "Tag check failed: $TAG_EXISTS"
             echo "::error::$TAG_EXISTS"
