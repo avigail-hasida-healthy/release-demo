@@ -45,7 +45,7 @@ jobs:
         run: |
           pwd 
           echo "Checking if tag ${TAG_NAME} exists."
-          TAG_EXISTS=$(git version)
+          TAG_EXISTS=$(git tag | grep "testing")
           echo "Tag exists: $TAG_EXISTS"
           if [ -n "$TAG_EXISTS" ]; then
             echo "Tag ${TAG_NAME} already exists. Exiting the workflow."
