@@ -44,6 +44,7 @@ jobs:
       - name: Check if tag exists
         run: |
           echo "Checking if tag ${TAG_NAME} exists."
+          git show-ref --tags
           TAG_EXISTS=$(git show-ref --tags | grep "refs/tags/${{ env.TAG_NAME }}")
           echo "Tag exists: $TAG_EXISTS"
           if [ -n "$TAG_EXISTS" ]; then
