@@ -43,18 +43,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Check if tag exists
-        run: |
-          pwd 
-          echo "Checking if tag ${TAG_NAME} exists."
-          git tag > tags.txt
-          cat tags.txt
-          echo "Checking tags.txt"
-          TAG_EXISTS=$(git tag | grep "testing")
-          echo "Tag exists: $TAG_EXISTS"
-          if [ -n "$TAG_EXISTS" ]; then
-            echo "Tag ${TAG_NAME} already exists. Exiting the workflow."
-            exit 1
-          fi
+        run: ./.github/scripts/check-tag-exists.sh
+        shell: bash
 
       - name: Check if branch exists
         run: |
