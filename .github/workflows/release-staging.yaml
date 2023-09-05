@@ -15,12 +15,27 @@ jobs:
       VERSION: ${{ github.event.inputs.version }}
       TAG_NAME: v${{ github.event.inputs.version }}
 
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      deployments: read
+      discussions: read
+      issues: read
+      packages: read
+      pages: read
+      pull-requests: read
+      repository-projects: read
+      security-events: read
+      statuses: read
+
     steps:
       - name: Validate version format
         run: |
           if [[ ! "${{ env.VERSION }}" =~ ^[0-9]+\.[0-9]+\.0$ ]]; then
             echo "Invalid version format. Please use the 1.0.0 format. Exiting the workflow with an error."
             exit 1
+
           fi
 
       - name: Check out code
@@ -28,7 +43,9 @@ jobs:
 
       - name: Check if tag exists
         run: |
+          echo "Checking if tag ${TAG_NAME} exists."
           TAG_EXISTS=$(git show-ref --tags | grep "refs/tags/${{ env.TAG_NAME }}")
+          echo "Tag exists: $TAG_EXISTS"
           if [ -n "$TAG_EXISTS" ]; then
             echo "Tag ${TAG_NAME} already exists. Exiting the workflow."
             exit 1
@@ -45,7 +62,6 @@ jobs:
 
       - name: Create release branch
         run: |
-          BRANCH_NAME="release/${VERSION%.0}.x"
           git checkout -b $BRANCH_NAME
           git push origin $BRANCH_NAME
 
