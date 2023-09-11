@@ -1,0 +1,19 @@
+{
+  "name": "release-demo",
+  "version": "1.0.0",
+  "description": "This repository should be a template for the release process in Healthy.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avigail-hasida-healthy/release-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avigail-hasida-healthy/release-demo/issues"
+  },
+  "homepage": "https://github.com/avigail-hasida-healthy/release-demo#readme"
+}
