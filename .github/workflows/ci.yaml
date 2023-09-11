@@ -1,0 +1,18 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+      - release/*
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: setup node
+        uses: actions/setup-node@v3
+      - name: build
+        run: npm ci
