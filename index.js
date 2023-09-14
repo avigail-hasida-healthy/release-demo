@@ -1,1 +1,1 @@
-// TODO: something must be done with this file
+// TODO: this is the root of the application
