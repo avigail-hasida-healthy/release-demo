@@ -1,3 +1,4 @@
 module.exports = {
-  gcsImageDir: 'tomk-test/test'
+  gcsImageDir: 'tomk-test/test',
+  enableMilestones: true,
 };
