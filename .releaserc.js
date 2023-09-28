@@ -31,5 +31,15 @@ module.exports = {
     ],
     production: []
   },
-
+  k8s: {
+    staging: [
+      {
+        cluster: 'be-staging-uk',
+        zone: 'europe-west2-a',
+        project: 'smiling-diode-638',
+        namespace: 'adherence-staging'
+      }
+    ],
+    production: []
+  }
 };

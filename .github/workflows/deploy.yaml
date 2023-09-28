@@ -13,4 +13,5 @@ jobs:
       - name: deploy
         shell: bash
         run: |
+          sleep 10 |
           echo "deploying repository"
