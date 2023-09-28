@@ -28,7 +28,8 @@ module.exports = {
         type: 'github',
         workflow: 'deploy.yaml',
       }
-    ]
+    ],
+    production: []
   },
 
 };
