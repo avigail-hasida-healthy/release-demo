@@ -10,17 +10,9 @@ module.exports = {
       {
         type: 'jenkins',
         host: 'https://jenkins-ci.healthy.io',
-        job: 'zz-JenkinsTests/Morad-tests/helm-charts-deployment',
+        job: '/Urine Commercial/Deploy staging',
         parameters: {
-          chart: 'testing-chart'
-        }
-      },
-      {
-        type: 'jenkins',
-        host: 'https://jenkins-ci.healthy.io',
-        job: 'Urine Commercial/Deploy staging',
-        parameters: {
-          labels: 'adherence-develop',
+          labels: 'name=adherence-cronjobs-develop',
           helmfiles: 'adherence'
         }
       },
