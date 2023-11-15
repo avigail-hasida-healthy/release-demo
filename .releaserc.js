@@ -1,7 +1,7 @@
 module.exports = {
   //gcsImageDir: 'tomk-test/test',
   staging: {
-    enableMilestones: true,
+    // enableMilestones: true,
     // helmFiles: ['smiling-diode-638/be-staging-uk_universe-staging.yaml'],
     deploy: [
       // {
