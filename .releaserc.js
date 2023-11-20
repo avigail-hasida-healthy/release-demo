@@ -28,7 +28,7 @@ module.exports = {
     // ],
   },
   production: {
-    database: 'postgres-adherence-algo',
+    // database: 'postgres-adherence-algo',
     // helmFiles: ['smiling-diode-638/be-production-uk_universe-staging.yaml'],
   }
 };
