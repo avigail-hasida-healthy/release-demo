@@ -1,5 +1,5 @@
 module.exports = {
-  //gcsImageDir: 'tomk-test/test',
+  //gcrImageDir: 'tomk-test/test',
   staging: {
     // enableMilestones: true,
     // helmFiles: ['smiling-diode-638/be-staging-uk_universe-staging.yaml'],
@@ -28,6 +28,7 @@ module.exports = {
     // ],
   },
   production: {
+    database: 'postgres-adherence-algo',
     // helmFiles: ['smiling-diode-638/be-production-uk_universe-staging.yaml'],
   }
 };
