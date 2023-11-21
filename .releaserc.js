@@ -27,8 +27,13 @@ module.exports = {
     //   }
     // ],
   },
-  production: {
+  production: [
+    // {
+    //   region: 'us'
     // database: 'postgres-adherence-algo',
     // helmFiles: ['smiling-diode-638/be-production-uk_universe-staging.yaml'],
-  }
+    // deploy: []
+    // k8s: {}
+    // }
+  ]
 };
