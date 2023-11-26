@@ -27,7 +27,7 @@ module.exports = {
     //   }
     // ],
   },
-  ['production-us']: [
+  production: [
     // {
     //   region: 'us'
     //   database: 'postgres-adherence-algo',
