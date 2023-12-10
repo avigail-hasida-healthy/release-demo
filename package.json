@@ -1,6 +1,6 @@
 {
   "name": "release-demo",
-  "version": "1.75.1",
+  "version": "1.75.2",
   "description": "This repository should be a template for the release process in Healthy.io",
   "main": "index.js",
   "scripts": {
