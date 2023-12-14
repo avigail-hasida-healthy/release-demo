@@ -1,7 +1,8 @@
 module.exports = {
-  //gcrImageDir: 'tomk-test/test',
+  //gcrImageDir: 'tomk-test/test', 
   staging: {
-    // enableMilestones: true,
+    // mondayAfterReleaseViewsUrl: ['https://url'],
+    // enableMilestones: true,  
     // helmFiles: ['smiling-diode-638/be-staging-uk_universe-staging.yaml'],
     deploy: [
       // {
@@ -28,6 +29,8 @@ module.exports = {
     // ],
   },
   production: {
+    mondayReleaseBoardUrl: 'https://url',
+    // mondayAfterReleaseViewsUrl: ['https://url'],
     uk: {},
     us: {},
     // us: {
