@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check tag name
-        run: ./.github/actions/check-tag
+        uses: ./.github/actions/check-tag
       - name: checkout
         uses: actions/checkout@v3
         with:
