@@ -2,12 +2,9 @@ name: 'Check Tag'
 description: 'Checks if a Git reference name has SemVer version'
 runs:
   using: 'composite'
-  steps:
-    - name: checkout
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
+  steps:   
     - name: check tag
+      shell: bash
       run: |
         if [[ ${{ github.ref_type }} == 'tag' && ${{ github.ref_name }} =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "tag name is valid"
