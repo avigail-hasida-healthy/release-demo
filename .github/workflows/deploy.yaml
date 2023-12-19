@@ -6,12 +6,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: check tag name
-        uses: ./.github/actions/check-tag
       - name: checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: check tag name
+        uses: ./.github/actions/check-tag
       - name: deploy
         shell: bash
         run: |
