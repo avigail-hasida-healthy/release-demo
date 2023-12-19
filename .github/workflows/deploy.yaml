@@ -6,6 +6,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: check tag name
+        run: |
+          if [[ ${{ github.ref_type }} == 'tag' && ${{ github.ref_name }} =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "tag name is valid"
+          else
+            echo "tag name is invalid"
+            exit 1
+          fi
       - name: checkout
         uses: actions/checkout@v3
         with:
