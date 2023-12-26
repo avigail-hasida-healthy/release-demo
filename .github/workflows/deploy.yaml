@@ -12,6 +12,7 @@ jobs:
           fetch-depth: 0
       - name: check tag name
         uses: ./.github/actions/check-tag
+        if: ${{ github.ref_type != 'branch' }}
       - name: deploy
         shell: bash
         run: |
